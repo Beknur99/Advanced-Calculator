@@ -1,9 +1,11 @@
 """
 Advanced Console Calculator
 Author: Beknur99
-Version: 1.0
-A simple console-based calculator supporting basic operations.
+Version: 1.1
+A simple console-based calculator supporting basic operations + power and square root.
 """
+
+import math
 
 def add(x, y):
     """Return the sum of two numbers."""
@@ -26,6 +28,16 @@ def divide(x, y):
         return "Error: Division by zero is undefined"
     return x / y
 
+def power(x, y):
+    """Return x raised to the power of y."""
+    return x ** y
+
+def square_root(x):
+    """Return the square root of x."""
+    if x < 0:
+        return "Error: Square root of negative number is undefined"
+    return math.sqrt(x)
+
 def show_menu():
     """Display the calculator operation options."""
     print("\n" + "="*35)
@@ -35,7 +47,9 @@ def show_menu():
     print("2. Subtraction")
     print("3. Multiplication")
     print("4. Division")
-    print("5. Exit Program")
+    print("5. Power (x^y)")
+    print("6. Square Root (√x)")
+    print("7. Exit Program")
     print("="*35)
 
 def main():
@@ -46,13 +60,23 @@ def main():
     
     while True:
         show_menu()
-        choice = input("Please select an operation (1-5): ").strip()
+        choice = input("Please select an operation (1-7): ").strip()
         
         # Exit condition
-        if choice == '5':
+        if choice == '7':
             print("Thank you for using the Advanced Console Calculator.")
             break
         
+        # Square root only needs one operand
+        if choice == '6':
+            try:
+                num = float(input("Enter the number: "))
+                result = square_root(num)
+                print(f"Result: √{num} = {result}")
+            except ValueError:
+                print("Invalid input: Please enter numerical values only.")
+            continue
+
         # Validate and process numerical input
         try:
             num1 = float(input("Enter the first operand: "))
@@ -74,8 +98,11 @@ def main():
         elif choice == '4':
             result = divide(num1, num2)
             print(f"Result: {num1} ÷ {num2} = {result}")
+        elif choice == '5':
+            result = power(num1, num2)
+            print(f"Result: {num1}^{num2} = {result}")
         else:
-            print("Invalid selection: Please choose an option between 1-5.")
+            print("Invalid selection: Please choose an option between 1-7.")
 
 # Standard Python idiom for executable scripts
 if __name__ == "__main__":
