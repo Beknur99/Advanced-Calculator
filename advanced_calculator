@@ -1,0 +1,82 @@
+"""
+Advanced Console Calculator
+Author: Beknur99
+Version: 1.0
+A simple console-based calculator supporting basic operations.
+"""
+
+def add(x, y):
+    """Return the sum of two numbers."""
+    return x + y
+
+def subtract(x, y):
+    """Return the difference between two numbers."""
+    return x - y
+
+def multiply(x, y):
+    """Return the product of two numbers."""
+    return x * y
+
+def divide(x, y):
+    """
+    Return the quotient of two numbers.
+    Returns an error message for division by zero.
+    """
+    if y == 0:
+        return "Error: Division by zero is undefined"
+    return x / y
+
+def show_menu():
+    """Display the calculator operation options."""
+    print("\n" + "="*35)
+    print("CALCULATOR OPERATIONS")
+    print("="*35)
+    print("1. Addition")
+    print("2. Subtraction")
+    print("3. Multiplication")
+    print("4. Division")
+    print("5. Exit Program")
+    print("="*35)
+
+def main():
+    """Main program function for the calculator application."""
+    print("="*50)
+    print("Advanced Console Calculator")
+    print("="*50)
+    
+    while True:
+        show_menu()
+        choice = input("Please select an operation (1-5): ").strip()
+        
+        # Exit condition
+        if choice == '5':
+            print("Thank you for using the Advanced Console Calculator.")
+            break
+        
+        # Validate and process numerical input
+        try:
+            num1 = float(input("Enter the first operand: "))
+            num2 = float(input("Enter the second operand: "))
+        except ValueError:
+            print("Invalid input: Please enter numerical values only.")
+            continue
+        
+        # Execute selected operation
+        if choice == '1':
+            result = add(num1, num2)
+            print(f"Result: {num1} + {num2} = {result}")
+        elif choice == '2':
+            result = subtract(num1, num2)
+            print(f"Result: {num1} - {num2} = {result}")
+        elif choice == '3':
+            result = multiply(num1, num2)
+            print(f"Result: {num1} × {num2} = {result}")
+        elif choice == '4':
+            result = divide(num1, num2)
+            print(f"Result: {num1} ÷ {num2} = {result}")
+        else:
+            print("Invalid selection: Please choose an option between 1-5.")
+
+# Standard Python idiom for executable scripts
+if __name__ == "__main__":
+    main()
